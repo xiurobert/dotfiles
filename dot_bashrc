@@ -1,6 +1,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+source $HOME/.config/custom-aliases.sh
+
 alias ls='ls --color=auto'
 
 powerline-daemon -q
