@@ -23,6 +23,8 @@ pip install psutil
 
 Fix mouse acceleration
 
+Edit: `/etc/X11/xorg.conf.d/50-mouse-acceleration.conf`
+
 ```
 Section "InputClass"
     Identifier "Logitech catchall"
