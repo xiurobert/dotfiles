@@ -25,7 +25,8 @@ Fix mouse acceleration
 
 Edit: `/etc/X11/xorg.conf.d/50-mouse-acceleration.conf`
 
-Or curl this: https://gist.githubusercontent.com/xiurobert/78b3552d301568ca8572545898b2a577/raw/ed5a1a2dcdb0fd1bc41bac643d1117b9ebf87eb1/50-mouse-acceleration.conf
+Or curl this: https://gist.githubusercontent.com/xiurobert/78b3552d301568ca8572545898b2a577/raw/
+`curl https://gist.githubusercontent.com/xiurobert/78b3552d301568ca8572545898b2a577/raw/ > /etc/X11/xorg.conf.d/50-mouse-acceleration.conf`
 
 ```
 Section "InputClass"
