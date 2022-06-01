@@ -10,7 +10,7 @@ Ansible playbook coming soon
 sudo pacman -S git vim htop openssh
 sudo pacman -S vlc firefox discord
 sudo pacman -S gnome-keyring
-sudo pacvman -S alacritty qtile cezmoi xwallpaper rofi lightdm lightdm-slick-greeter picom xclip
+sudo pacman -S alacritty qtile cezmoi xwallpaper rofi lightdm lightdm-slick-greeter picom xclip
 # make sure to change the greeter
 sudo systemctl enable lightdm
 sudo pacman -S powerline
