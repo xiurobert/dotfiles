@@ -1,0 +1,9 @@
+configuration {
+ modi: "window,drun,ssh,combi";
+ combi-modi: "window,drun,ssh";
+ font: "JetBrains Mono 14";
+ icon-theme: "Papirus";
+ show-icons: true;
+}
+@theme "solarized"
+

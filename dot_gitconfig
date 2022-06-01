@@ -1,0 +1,5 @@
+[user]
+	name = Robert
+	email = xiurobert@gmail.com
+[credential]
+	helper = /usr/lib/git-core/git-credential-libsecret
