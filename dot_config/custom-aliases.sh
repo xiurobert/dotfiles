@@ -12,5 +12,5 @@ function dotfile_update() {
     curr_dir=$(pwd)
     echo "$curr_dir"
     cd "$(chezmoi source-path)" && _df_upd_helper
-    cd curr_dir || exit
+    cd curr_dir
 }
