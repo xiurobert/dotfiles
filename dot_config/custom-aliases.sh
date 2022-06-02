@@ -10,7 +10,6 @@ function _df_upd_helper() {
 function dotfile_update() {
     chezmoi re-add
     curr_dir=$(pwd)
-    cd "$(chezmoi source-path)"
-    _df_upd_helper
-    cd curr_dir
+    cd "$(chezmoi source-path)" && _df_upd_helper
+    cd "$curr_dir"
 }
