@@ -71,15 +71,15 @@ keys = [
         desc="Toggle between split and unsplit sides of stack",
     ),
     # Start some windows
-    Key([mod], "e", lazy.spawn("pcmanfm-qt"), desc="Launch file browser"),
+    Key([mod], "e", lazy.spawn("pcmanfm"), desc="Launch file browser"),
     Key([mod], "b", lazy.spawn("firefox"), desc="Launch firefox"),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     # Toggle between different layouts as defined below
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
-    Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    
+    # Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+
     Key([mod], "r", lazy.spawn('rofi -show combi'), desc="Opens rofi"),
 ]
 
@@ -96,33 +96,33 @@ for i in groups:
                 [mod],
                 i.name,
                 lazy.group[i.name].toscreen(),
-                desc="Switch to group {}".format(i.name),
+                desc=f"Switch to group {i.name}",
             ),
             # mod1 + shift + letter of group = switch to & move focused window to group
             Key(
                 [mod, "shift"],
                 i.name,
-                lazy.window.togroup(i.name, switch_group=True),
-                desc="Switch to & move focused window to group {}".format(i.name),
+                lazy.window.togroup(i.name),
+                desc=f"Move focused window to group {i.name}",
             ),
-            # Or, use below if you prefer not to switch to that group.
-            # # mod1 + shift + letter of group = move focused window to group
-            # Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
-            #     desc="move focused window to group {}".format(i.name)),
         ]
     )
 
-Colors = namedtuple("Colors", ["border_focus", "border_normal"])
-cols = Colors("#00ffff", "#004c44")
+
+class Colors:
+    SIERRA_BLUE = "#69abce"
+    CYAN = "#00ffff"
+    DARK_CYAN = "#004c44"
+
 
 layouts = [
-    layout.Columns(border_focus=cols.border_focus, border_normal=cols.border_normal, border_width=1, margin=4),
+    layout.Columns(border_focus=Colors.CYAN, border_normal=Colors.DARK_CYAN, border_width=1, margin=4),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-    layout.MonadTall(border_focus=cols.border_focus, border_normal=cols.border_normal, margin=3, ratio=0.65),
+    layout.MonadTall(border_focus=Colors.CYAN, border_normal=Colors.DARK_CYAN, margin=3, ratio=0.65),
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
@@ -142,9 +142,8 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.CurrentLayout(),
-                widget.GroupBox(),
-                widget.Prompt(),
+                widget.CurrentLayoutIcon(scale=0.8),
+                widget.GroupBox(highlight_method='line'),
                 widget.WindowName(),
                 widget.Chord(
                     chords_colors={
@@ -152,20 +151,21 @@ screens = [
                     },
                     name_transform=lambda name: name.upper(),
                 ),
-                widget.Net(),
-                widget.PulseVolume(get_volume_command="pamixer --get-volume"),
+                widget.Net(background="69abce"),
+                widget.PulseVolume(get_volume_command="pamixer --get-volume", mute_command="pamixer --mute"),
                 widget.CPU(background='a87b32'),
                 widget.TextBox(text="", font="Font Awesome 6 Free", background="FF00FF"),
+                # widget.SwapGraph(),
                 widget.Memory(format='{MemUsed:.2f}{mm}/{MemTotal:.2f}{mm}', measure_mem='G', background="FF00FF"),
-                widget.ThermalSensor(background="0071C5", tag_sensor="Package id 0"), 
+                widget.ThermalSensor(background="0071C5", tag_sensor="Package id 0"),
                 widget.NvidiaSensors(background="76B900", foreground="000000"),
                 widget.Systray(),
                 widget.Clock(format="%a, %m/%d %I:%M %p"),
                 widget.QuickExit(),
             ],
             24,
-            border_width=[1, 1, 1, 1],  
-            border_color=["69abce", "69abce", "69abce", "69abce"]  
+            border_width=[1, 1, 1, 1],
+            border_color=[Colors.SIERRA_BLUE] * 4
         ),
     ),
 ]
@@ -205,9 +205,15 @@ auto_minimize = True
 # When using the Wayland backend, this can be used to configure input devices.
 wl_input_rules = None
 
+
 # Autostart rules
 @hook.subscribe.startup_once
 def autostart():
     home = os.path.expanduser('~/.config/qtile/autostart.sh')
     subprocess.call([home])
 
+
+@hook.subscribe.client_new
+def client_new(client):
+    if client.name == "PyCharm":
+        client.togroup("2")

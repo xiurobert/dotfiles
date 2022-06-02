@@ -14,9 +14,8 @@ sudo pacman -S alacritty qtile cezmoi xwallpaper rofi lightdm lightdm-slick-gree
 # make sure to change the greeter
 # https://wiki.archlinux.org/title/LightDM#Greeter
 sudo systemctl enable lightdm
-sudo pacman -S powerline
 sudo pacman -S python-pip
-pip install psutil
+pip install psutil powerline-shell
 ``` 
 
 ### Post-install
