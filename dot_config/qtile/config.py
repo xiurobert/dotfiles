@@ -28,9 +28,12 @@ import os
 import subprocess
 
 from libqtile import bar, layout, widget, hook
+from libqtile.backend.base import Window
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
+
+from libqtile.log_utils import logger
 
 from collections import namedtuple
 
@@ -122,7 +125,7 @@ layouts = [
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-    layout.MonadTall(border_focus=Colors.CYAN, border_normal=Colors.DARK_CYAN, margin=3, ratio=0.65),
+    layout.MonadTall(border_focus=Colors.CYAN, border_normal=Colors.DARK_CYAN, border_width=1, margin=4, ratio=0.65),
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
@@ -142,7 +145,7 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.CurrentLayoutIcon(scale=0.8),
+                widget.CurrentLayout(),
                 widget.GroupBox(highlight_method='line'),
                 widget.WindowName(),
                 widget.Chord(
@@ -213,7 +216,13 @@ def autostart():
     subprocess.call([home])
 
 
-@hook.subscribe.client_new
-def client_new(client):
-    if client.name == "PyCharm":
-        client.togroup("2")
+# @hook.subscribe.client_new
+# def client_new(client: Window):
+#     if "Firefox".lower() in client.name.lower():
+#         client.togroup("1")
+
+@hook.subscribe.client_managed
+def pycharm_to_dev(client: Window):
+    # logger.warning(client.get_wm_class())
+    if client.get_wm_class()[1] == "jetbrains-pycharm-ce":
+        client.togroup("2", switch_group=True)
