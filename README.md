@@ -16,6 +16,9 @@ sudo pacman -S alacritty qtile cezmoi xwallpaper rofi lightdm lightdm-slick-gree
 sudo systemctl enable lightdm
 sudo pacman -S python-pip
 pip install psutil powerline-shell
+sudo pacman -S pamixer pipewire pipewire-pulse wireplumber
+sudo pacman -S xrandr
+yay volctl
 ``` 
 
 ### Post-install
