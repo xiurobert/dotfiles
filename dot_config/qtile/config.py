@@ -105,6 +105,8 @@ keys = [
 groups = [
     Group("1", label="www", layout="columns"),
     Group("2", label="dev", layout="monadtall"),
+    Group("3", label="chat", layout="matrix"),
+
 ]
 
 for i in groups:
@@ -151,7 +153,8 @@ layouts = [
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
-    # layout.Matrix(),
+    layout.Matrix(border_focus=StandardColors.CYAN, border_normal=StandardColors.DARK_CYAN,
+                  border_width=1, margin=4),
     layout.MonadTall(border_focus=StandardColors.CYAN, border_normal=StandardColors.DARK_CYAN,
                      border_width=1, margin=4, ratio=0.65),
     layout.MonadThreeCol(border_focus=StandardColors.CYAN, border_normal=StandardColors.DARK_CYAN,
@@ -205,15 +208,15 @@ screens = [
                 widget.Net(background=Colors.SIERRA_BLUE),
                 widget.Spacer(length=10, background=Colors.SIERRA_BLUE),
 
-                gen_sep(StandardColors.LIGHT_GRAY, Colors.SIERRA_BLUE),
-                widget.PulseVolume(name='volume',
-                                   get_volume_command="pamixer --get-volume",
-                                   mute_command="pamixer -t",
-                                   foreground=StandardColors.BLACK,
-                                   background=StandardColors.LIGHT_GRAY),
-                widget.Spacer(length=5, background=StandardColors.LIGHT_GRAY),
+                # gen_sep(StandardColors.LIGHT_GRAY, Colors.SIERRA_BLUE),
+                # widget.PulseVolume(name='volume',
+                #                    get_volume_command="pamixer --get-volume",
+                #                    mute_command="pamixer -t",
+                #                    foreground=StandardColors.BLACK,
+                #                    background=StandardColors.LIGHT_GRAY),
+                # widget.Spacer(length=5, background=StandardColors.LIGHT_GRAY),
 
-                gen_sep('a87b32', StandardColors.LIGHT_GRAY),
+                gen_sep('a87b32', Colors.SIERRA_BLUE),
                 widget.CPU(background='a87b32'),
                 widget.Spacer(length=10, background='a87b32'),
 
@@ -301,6 +304,19 @@ def autostart():
 
 ides = ["jetbrains-pycharm-ce", "jetbrains-pycharm"]
 
+messengers = ["discord"]
+
+workspace_allocations = {
+    "2": ides,
+    "3": messengers
+}
+
+
+@hook.subscribe.client_managed
+def send_windows_to_correct_workspaces(window: Window):
+    if window.get_wm_class()[1] in workspace_allocations.values():
+        pass
+
 
 @hook.subscribe.client_managed
 def ides_to_dev(client: Window):
@@ -311,8 +327,19 @@ def ides_to_dev(client: Window):
 
 
 @hook.subscribe.client_managed
+def check_wm_class(client: Window):
+    # logger.warning(client.get_wm_class()[1])
+    pass
+
+
+@hook.subscribe.client_managed
+def send_messengers_to_chat(client: Window):
+    if client.get_wm_class()[1] in messengers:
+        client.togroup("3", switch_group=True)
+
+
+@hook.subscribe.client_managed
 def vscode_to_dev(client: Window):
-    # dev = groups[1]
     # logger.warn(dev.layout_opts)
     if client.get_wm_class()[1] == "Code":
         client.togroup("2", switch_group=True)
