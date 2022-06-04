@@ -232,7 +232,7 @@ screens = [
                 widget.ThermalSensor(background="0071C5", tag_sensor="Package id 0"),
 
                 gen_sep(nv_green, "0071C5"),
-                widget.Image(filename="~/.config/qtile/icons/gpu.png", background=nv_green),
+                widget.TextBox(text="", font="Font Awesome 6 Free", background=nv_green),
                 widget.NvidiaSensors(background=nv_green, foreground=StandardColors.WHITE),
 
                 gen_sep(StandardColors.WHITE, nv_green),
