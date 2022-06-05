@@ -311,6 +311,7 @@ workspace_allocations = {
     "3": messengers
 }
 
+wmname = "qtile"
 
 @hook.subscribe.client_managed
 def send_windows_to_correct_workspaces(window: Window):
