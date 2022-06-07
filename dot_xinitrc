@@ -1,1 +1,2 @@
+export AWT_TOOLKIT=MToolkit
 exec qtile start

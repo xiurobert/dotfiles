@@ -343,5 +343,5 @@ def send_messengers_to_chat(client: Window):
 @hook.subscribe.client_managed
 def vscode_to_dev(client: Window):
     # logger.warn(dev.layout_opts)
-    if client.get_wm_class()[1] == "Code":
+    if client.get_wm_class()[1] == "Code" or client.get_wm_class()[0] == 'vscodium':
         client.togroup("2", switch_group=True)
