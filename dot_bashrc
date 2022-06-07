@@ -16,3 +16,4 @@ source $HOME/.config/custom-aliases.sh
 alias ls='ls --color=auto'
 
 export EDITOR=vim
+. "$HOME/.cargo/env"
