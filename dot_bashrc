@@ -17,4 +17,8 @@ alias ls='ls --color=auto'
 
 export EDITOR=vim
 export GPG_TTY=$(tty)
+
+if [[ -f $HOME/.bw_session ]]; then
+    source $HOME/.bw_session
+fi
 . "$HOME/.cargo/env"
