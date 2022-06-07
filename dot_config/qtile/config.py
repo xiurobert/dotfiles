@@ -95,6 +95,7 @@ keys = [
     # Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
 
     Key([mod], "r", lazy.spawn('rofi -show combi'), desc="Opens rofi"),
+    Key([alt], "Tab", lazy.spawn('rofi -show window -kb-accept-entry "!Alt-Tab,!Alt+Alt_L" -kb-row-down "Alt+Tab" -selected-row 1 '), desc="Opens rofi in window switcher mode"),
 
     # Sound
     Key([], "XF86AudioMute", lazy.spawn("pamixer -t"), update_volume(), desc="Toggle mute"),
