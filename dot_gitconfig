@@ -1,5 +1,8 @@
 [user]
 	name = Robert
 	email = xiurobert@gmail.com
+	signingKey = 7E13072B4EF7D530
 [credential]
 	helper = /usr/lib/git-core/git-credential-libsecret
+[commit]
+	gpgSign = true
