@@ -322,16 +322,15 @@ def send_windows_to_correct_workspaces(window: Window):
 
 @hook.subscribe.client_managed
 def ides_to_dev(client: Window):
-    # logger.warning(client.get_wm_class())
     if client.get_wm_class()[1] in ides:
         client.togroup("2", switch_group=True)
         # client.cmd_bring_to_front()
 
 
 @hook.subscribe.client_managed
-def check_wm_class(client: Window):
-    # logger.warning(client.get_wm_class()[1])
-    pass
+def slack_to_chat(client: Window):
+    if client.get_wm_class()[0] == "slack":
+        client.togroup("3", switch_group=True)
 
 
 @hook.subscribe.client_managed
