@@ -93,6 +93,7 @@ keys = [
     Key([mod], "q", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     # Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+    Key([mod], "l", lazy.spawn('dm-tool lock'), desc="Locks the screen"),
 
     Key([mod], "r", lazy.spawn('rofi -show combi'), desc="Opens rofi"),
     Key([alt], "Tab", lazy.spawn('rofi -show window -kb-accept-entry "!Alt-Tab,!Alt+Alt_L" -kb-row-down "Alt+Tab" -selected-row 1 '), desc="Opens rofi in window switcher mode"),

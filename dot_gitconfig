@@ -6,3 +6,5 @@
 	helper = /usr/lib/git-core/git-credential-libsecret
 [commit]
 	gpgSign = true
+[init]
+	defaultBranch = master
