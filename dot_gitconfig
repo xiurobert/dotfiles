@@ -8,3 +8,5 @@
 	gpgSign = true
 [init]
 	defaultBranch = master
+[core]
+	abbrev = 8
