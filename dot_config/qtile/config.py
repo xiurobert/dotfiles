@@ -41,10 +41,9 @@ from collections import namedtuple
 mod = "mod4"
 alt = "mod1"
 
-terminal = guess_terminal()
+terminal = "konsole"
 browser = "firefox"
-file_manager = "pcmanfm"
-
+file_manager = "dolphin"
 
 @lazy.function
 def update_volume(qtile: libqtile.qtile):
