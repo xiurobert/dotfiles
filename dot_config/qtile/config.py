@@ -241,7 +241,7 @@ screens = [
                 widget.Spacer(length=10, background=StandardColors.LIGHT_GRAY),
 
                 gen_sep(StandardColors.DARK_GRAY, StandardColors.LIGHT_GRAY),
-                widget.Clock(format="%I:%M %p", font="Sans",
+                widget.Clock(format="%m/%d %I:%M %p", font="Sans",
                              foreground=StandardColors.BLACK,
                              background=StandardColors.DARK_GRAY),
                 widget.Spacer(length=10, background=StandardColors.DARK_GRAY),
