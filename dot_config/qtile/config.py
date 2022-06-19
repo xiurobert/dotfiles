@@ -236,11 +236,11 @@ screens = [
                 widget.TextBox(text="", font="Font Awesome 6 Free", background=nv_green),
                 widget.NvidiaSensors(background=nv_green, foreground=StandardColors.WHITE),
 
-                gen_sep(StandardColors.WHITE, nv_green),
-                widget.Systray(background=StandardColors.WHITE),
-                widget.Spacer(length=10, background=StandardColors.WHITE),
+                gen_sep(StandardColors.LIGHT_GRAY, nv_green),
+                widget.Systray(background=StandardColors.LIGHT_GRAY),
+                widget.Spacer(length=10, background=StandardColors.LIGHT_GRAY),
 
-                gen_sep(StandardColors.DARK_GRAY, StandardColors.WHITE),
+                gen_sep(StandardColors.DARK_GRAY, StandardColors.LIGHT_GRAY),
                 widget.Clock(format="%I:%M %p", font="Sans",
                              foreground=StandardColors.BLACK,
                              background=StandardColors.DARK_GRAY),

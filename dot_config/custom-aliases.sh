@@ -1,5 +1,8 @@
 #!/bin/bash
 alias pbcopy="xclip -sel clip"
+alias py="python"
+complete -F _python py
+alias ipy="ipython"
 
 alias tail_qtile_log="tail -f $HOME/.local/share/qtile/qtile.log"
 
