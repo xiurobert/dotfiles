@@ -30,6 +30,10 @@ if [[ -d $HOME/.pyenv ]]; then
     eval "$(pyenv init -)"
 fi
 
+if [[ -r /usr/share/bash-completion/completions/python3 ]]; then
+    . /usr/share/bash-completion/completions/python3 && complete -F _python python py
+fi
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/xiurobert/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
