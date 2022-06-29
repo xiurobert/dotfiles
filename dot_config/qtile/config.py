@@ -144,6 +144,24 @@ class StandardColors:
     DARK_CYAN = "#004c44"
     CYAN = "#00ffff"
 
+class Solarized:
+    base03 	= "#002b36"
+    base02 	= "#073642"
+    base01 	= "#586e75"
+    base00 	= "#657b83"
+    base0 	= "#839496"
+    base1 	= "#93a1a1"
+    base2 	= "#eee8d5"
+    base3 	= "#fdf6e3"
+    yellow 	= "#b58900"
+    orange 	= "#cb4b16"
+    red 	= "#d30102"
+    magenta = "#d33682"
+    violet 	= "#6c71c4"
+    blue 	= "#268bd2"
+    cyan 	= "#2aa198"
+    green 	= "#859900"
+
 
 nv_green = "76B900"
 
@@ -189,16 +207,17 @@ def gen_sep(from_color: str, to_color: str):
         text="", foreground=from_color, background=to_color, fontsize=30, font="JetBrains Mono", padding=0
     )
 
+BAR_COLOR = [Solarized.base03, Solarized.base01]
 
 screens = [
     Screen(
         top=bar.Bar(
             [
                 widget.CurrentLayout(),
-                widget.GroupBox(highlight_method='line', font="Sans"),
+                widget.GroupBox(highlight_method='line', font="Sans", inactive=Solarized.base01),
                 widget.WindowName(font="Sans"),
 
-                gen_sep(StandardColors.DARK_CYAN, StandardColors.BLACK),
+                gen_sep(StandardColors.DARK_CYAN, None),
                 widget.TextBox(text="", font="Font Awesome 6 Free", background=StandardColors.DARK_CYAN),
                 widget.DF(visible_on_warn=False,
                           format='{f}{m}/{s}{m}',
@@ -249,8 +268,9 @@ screens = [
                 widget.QuickExit(),
             ],
             24,
-            border_width=[1] * 4,
-            border_color=[Colors.SIERRA_BLUE] * 4
+            border_width=[0] * 4,
+            border_color=[Colors.SIERRA_BLUE] * 4,
+            background=BAR_COLOR
         ),
     ),
 ]
