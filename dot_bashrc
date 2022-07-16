@@ -14,7 +14,6 @@ fi
 source $HOME/.config/custom-aliases.sh
 
 alias ls='ls --color=auto'
-alias vim='nvim'
 
 export EDITOR=vim
 export GPG_TTY=$(tty)
