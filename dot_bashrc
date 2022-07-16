@@ -14,6 +14,7 @@ fi
 source $HOME/.config/custom-aliases.sh
 
 alias ls='ls --color=auto'
+alias vim='nvim'
 
 export EDITOR=vim
 export GPG_TTY=$(tty)
@@ -49,6 +50,7 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+export PATH="$PATH:/home/xiurobert/.yarn/bin"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
