@@ -15,7 +15,7 @@ source $HOME/.config/custom-aliases.sh
 
 alias ls='ls --color=auto'
 
-export EDITOR=vim
+export EDITOR=nvim
 export GPG_TTY=$(tty)
 
 if [[ -f $HOME/.bw_session ]]; then
